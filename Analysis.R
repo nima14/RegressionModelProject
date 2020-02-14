@@ -5,8 +5,9 @@ fit2 <- lm(mpg~factor(am)+cyl-1,mtcars)
 
 anova(fit1,fit2)
 
+
+
 CoefFit2 <- summary(fit2)$coef
 
-VIF(fit2)
+vif(lm(mpg~factor(am)+cyl,mtcars))
 ##Significant difference comparing transmissions
-#A
