@@ -9,3 +9,4 @@ CoefFit2 <- summary(fit2)$coef
 
 VIF(fit2)
 ##Significant difference comparing transmissions
+#A
