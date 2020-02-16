@@ -1,3 +1,13 @@
+library(dplyr)
+library(ggplot2)
+
+
+summary(mtcars$mpg)
+
+ggplot(mtcars,aes(x=mtcars$am,y=mtcars$mpg)) + boxplot()
+
+
+
 fit1 <- lm(mpg~factor(am),mtcars)
 CoefFit1 <- summary(fit1)$coef
 
@@ -49,3 +59,15 @@ fit7 <- lm(mpg~factor(am)+cyl+factor(carb)-1,mtcars)
 
 anova(fit1,fit2,fit7)
 ##No significant result
+
+
+
+
+FittedMPGs <- as.integer(predict(fit2))
+
+
+
+mtcars <- mutate(mtcars,FittedMPGs)
+
+
+
