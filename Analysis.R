@@ -14,6 +14,13 @@ ggplot(mtcars,aes(x=factor(mtcars$am),y=mtcars$mpg,fill=factor(mtcars$am))) +
 group_by(mtcars,am) %>% summarise(mean(mpg),sd(mpg)) %>% as.data.frame()
 
 
+mtcarsAutomatic <- mtcars[mtcars$am==0,]
+
+mtcarsManual <- mtcars[mtcars$am==1,]
+
+t.test(mtcarsAutomatic$mpg,mtcarsManual$mpg,paired = FALSE)
+
+pairs(mtcars$mpg ~ .,data=mtcars)
 
 fit1 <- lm(mpg~factor(am),mtcars)
 CoefFit1 <- summary(fit1)$coef
@@ -35,6 +42,7 @@ vif(lm(mpg~factor(am)+cyl,mtcars))
 cor(mtcars$cyl,mtcars$disp)
 cor(mtcars$cyl,mtcars$hp)
 cor(mtcars$cyl,mtcars$wt)
+cor(mtcars$qsec,mtcars$drat)
 ##High
 
 fit3 <- lm(mpg~factor(am)+cyl+drat-1,mtcars)
