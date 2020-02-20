@@ -1,20 +1,29 @@
 library(dplyr)
 library(ggplot2)
 
-
+str(mtcars)
 summary(mtcars$mpg)
 
-ggplot(mtcars,aes(x=mtcars$am,y=mtcars$mpg)) + boxplot()
+
+ggplot(mtcars,aes(x=factor(mtcars$am),y=mtcars$mpg,fill=factor(mtcars$am))) +
+  geom_boxplot()+ 
+  scale_fill_discrete(name = "Transmission", labels = c("Automatic", "Manual"))+
+  xlab("Transmission") + ylab("MPG")
+
+
+group_by(mtcars,am) %>% summarise(mean(mpg),sd(mpg)) %>% as.data.frame()
 
 
 
 fit1 <- lm(mpg~factor(am),mtcars)
 CoefFit1 <- summary(fit1)$coef
-
+    
 fit2 <- lm(mpg~factor(am)+cyl-1,mtcars)
+    
 
 anova(fit1,fit2)
 ##Significant difference comparing transmissions
+
 
 
 
