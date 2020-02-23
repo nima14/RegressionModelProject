@@ -1,6 +1,9 @@
 library(dplyr)
 library(ggplot2)
 
+
+
+
 str(mtcars)
 summary(mtcars$mpg)
 
@@ -31,13 +34,11 @@ fit2 <- lm(mpg~factor(am)+cyl-1,mtcars)
 anova(fit1,fit2)
 ##Significant difference comparing transmissions
 
-
+CoefFit2
 
 
 CoefFit2 <- summary(fit2)$coef
 
-vif(lm(mpg~factor(am)+cyl,mtcars))
-##Almost no relative variables
 
 cor(mtcars$cyl,mtcars$disp)
 cor(mtcars$cyl,mtcars$hp)
@@ -85,6 +86,6 @@ FittedMPGs <- as.integer(predict(fit2))
 
 
 mtcars <- mutate(mtcars,FittedMPGs)
-
-
-
+  
+  par(mfrow=c(2,2))
+  plot(fit2)
