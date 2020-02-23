@@ -86,3 +86,22 @@ summary(fit1)
 ```
 Note that R-squared is 0.3598
 
+From the above we know that the variables "cyl","dis","hp" and "wt" have strong correlations so I added one of them into the model named "cyl":
+
+```{r fit2}
+fit2 <- lm(mpg~factor(am)+cyl-1,mtcars)
+CoefFit2 <- summary(fit2)$coef
+summary(fit2)
+```
+Now the R-squared is  0.9807 which is way better than before.
+We use tha anova function to see if the new variable have an improvement on the model or not:
+
+```{r anova12}
+anova(fit1,fit2)
+```
+
+It had a significant effect on the model so we keep the "cyl"
+
+
+fit3 <- lm(mpg~factor(am)+cyl+drat-1,mtcars)
+

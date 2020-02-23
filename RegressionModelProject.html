@@ -465,6 +465,30 @@ summary(fit1)</code></pre>
 ## Residual standard error: 4.902 on 30 degrees of freedom
 ## Multiple R-squared:  0.3598, Adjusted R-squared:  0.3385 
 ## F-statistic: 16.86 on 1 and 30 DF,  p-value: 0.000285</code></pre>
+<p>Note that R-squared is 0.3598</p>
+<p>From the above we know that the variables “cyl”,“dis”,“hp” and “wt”have strong correlations so I added one of them into the model named “cyl”:</p>
+<pre class="r"><code>fit2 &lt;- lm(mpg~factor(am)+cyl-1,mtcars)
+CoefFit2 &lt;- summary(fit2)$coef
+summary(fit2)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = mpg ~ factor(am) + cyl - 1, data = mtcars)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.6856 -1.7172 -0.2657  1.8838  6.8144 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## factor(am)0  34.5224     2.6032  13.262 7.69e-14 ***
+## factor(am)1  37.0895     2.0188  18.372  &lt; 2e-16 ***
+## cyl          -2.5010     0.3608  -6.931 1.28e-07 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 3.059 on 29 degrees of freedom
+## Multiple R-squared:  0.9807, Adjusted R-squared:  0.9787 
+## F-statistic: 490.6 on 3 and 29 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 
 
