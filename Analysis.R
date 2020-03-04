@@ -43,7 +43,7 @@ CoefFit2 <- summary(fit2)$coef
 cor(mtcars$cyl,mtcars$disp)
 cor(mtcars$cyl,mtcars$hp)
 cor(mtcars$cyl,mtcars$wt)
-cor(mtcars$qsec,mtcars$drat)
+##cor(mtcars$qsec,mtcars$drat)
 ##High
 
 fit3 <- lm(mpg~factor(am)+cyl+drat-1,mtcars)
@@ -54,27 +54,22 @@ anova(fit1,fit2,fit3)
 
 
 fit4 <- lm(mpg~factor(am)+cyl+qsec-1,mtcars)
-
-
 anova(fit1,fit2,fit4)
 ##No significant result
 
 
 fit5 <- lm(mpg~factor(am)+cyl+factor(vs)-1,mtcars)
-
 anova(fit1,fit2,fit5)
 ##No significant result
 
 
 
 fit6 <- lm(mpg~factor(am)+cyl+factor(gear)-1,mtcars)
-
 anova(fit1,fit2,fit6)
 ##No significant result
 
 
 fit7 <- lm(mpg~factor(am)+cyl+factor(carb)-1,mtcars)
-
 anova(fit1,fit2,fit7)
 ##No significant result
 
@@ -82,9 +77,6 @@ anova(fit1,fit2,fit7)
 
 
 FittedMPGs <- as.integer(predict(fit2))
-
-
-
 mtcars <- mutate(mtcars,FittedMPGs)
   
   par(mfrow=c(2,2))
