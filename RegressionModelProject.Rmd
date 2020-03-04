@@ -2,7 +2,9 @@
 title: "RegressionModelProject"
 author: "Nima Taqidust"
 date: "2/23/2020"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -65,7 +67,6 @@ Now we see some strong relations between the variables, for a better understandi
 
 ```{r cor}
 correlation <- as.data.frame(cor(mtcars$cyl,mtcars$disp))
-correlation <-as.data.frame(rbind(correlation,cor(mtcars$cyl,mtcars$disp)))
 correlation <- as.data.frame(rbind(correlation, cor(mtcars$cyl,mtcars$hp)))
 correlation <- as.data.frame(rbind(correlation,cor(mtcars$cyl,mtcars$wt)))
 correlation <- as.data.frame(rbind(correlation,cor(mtcars$qsec,mtcars$drat)))
@@ -100,8 +101,51 @@ We use tha anova function to see if the new variable have an improvement on the 
 anova(fit1,fit2)
 ```
 
-It had a significant effect on the model so we keep the "cyl"
+It had a significant effect on the model so we keep the "cyl".
 
+Now we add the other variables step by step to see their impact on the model.
+
+
+```{r fit3}
 
 fit3 <- lm(mpg~factor(am)+cyl+drat-1,mtcars)
+anova(fit1,fit2,fit3)
+```
+
+```{r fit4}
+fit4 <- lm(mpg~factor(am)+cyl+qsec-1,mtcars)
+anova(fit1,fit2,fit4)
+```
+
+```{r fit5}
+
+fit5 <- lm(mpg~factor(am)+cyl+factor(vs)-1,mtcars)
+anova(fit1,fit2,fit5)
+```
+
+```{r fit6}
+
+fit6 <- lm(mpg~factor(am)+cyl+factor(gear)-1,mtcars)
+anova(fit1,fit2,fit6)
+```
+
+```{r fit7}
+
+fit7 <- lm(mpg~factor(am)+cyl+factor(carb)-1,mtcars)
+anova(fit1,fit2,fit7)
+```
+
+We can see that none of the above variables do not have a significant impact on the model so we ommit them all.
+
+So our model is based on the variables "cyl" and "am".
+
+### Appendix
+
+```{r appendix}
+FittedMPGs <- as.integer(predict(fit2))
+mtcars <- mutate(mtcars,FittedMPGs)
+mtcars
+
+  par(mfrow=c(2,2))
+  plot(fit2)
 
