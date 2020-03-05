@@ -81,3 +81,6 @@ mtcars <- mutate(mtcars,FittedMPGs)
   
   par(mfrow=c(2,2))
   plot(fit2)
+
+  
+  pairs(mtcars$mpg ~ .,data=mtcars)
