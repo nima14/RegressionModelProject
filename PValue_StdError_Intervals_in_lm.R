@@ -43,3 +43,28 @@ matrix(data=c(B0,B1,sigmaB0,sigmaB1,T_statB0,T_statB1,PValueB0,PValueB1),nrow=2)
 
 
 summary(fit)$coef
+
+#-----------------------------------------------------------
+
+parent <- 68
+
+Pred <- predict(fit,newdata = data.frame(parent) )
+
+#These 2 are equal
+
+predict(fit,newdata = data.frame(parent),interval ="confidence" )
+
+
+Pred +c(-1,1)*qt(0.975,df=n-2)*sigma*sqrt((1/n)+( parent - mean(Galton$parent))^2/XMinusXbar)
+
+#--------------------------------------------------------------
+
+#These 2 are equal
+
+predict(fit,newdata = data.frame(parent),interval ="prediction" )
+
+Pred +c(-1,1)*qt(0.975,df=n-2)*sigma*sqrt(1+ (1/n)+( parent - mean(Galton$parent))^2/XMinusXbar)
+
+
+
+
