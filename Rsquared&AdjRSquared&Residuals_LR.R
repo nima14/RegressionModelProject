@@ -43,3 +43,17 @@ SSreg <-sum( (pred - mean(pred))^2 )
 SStot <-sum( (Galton$child - mean(Galton$child))^2 )
 
 Rsq <- SSreg/SStot
+--------------------------------------
+  
+data(swiss)
+
+Model2 <- lm(Fertility~Agriculture,data=swiss)
+Rsq <- summary(Model2)$r.square
+summary(Model2)$adj.r.square
+
+n <- length(swiss$Agriculture)
+k <- 1 #Number of independent variables in lm
+
+
+Adj.Rsq <- 1 -  (1-Rsq)*(n-1)/(n-(k+1))
+
