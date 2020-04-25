@@ -51,7 +51,13 @@ fit1 <- lm(y~x)
 plot(x,y)
 abline(fit1)
 
-hatvalues(fit1)
+Hat <- hatvalues(fit1)
+
+n <- length(x) 
+k <- 2 #Number of parameters including intercept
+cutoff <- 2*k/n
+
+Hat>cutoff
 
 dfbeta(fit1)
 
