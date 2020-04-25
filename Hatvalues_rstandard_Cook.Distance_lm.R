@@ -75,4 +75,9 @@ plot(x,y)
 abline(fit1)
 abline(fit2)
 
+#These 2 are equal:
+Cook.Distance <- cooks.distance(fit1)
+
+Cook.Distance2 <- 1/k*(rstandard(fit1))^2*(Hat/(1-Hat))
+
 
