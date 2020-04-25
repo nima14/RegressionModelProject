@@ -81,3 +81,26 @@ Cook.Distance <- cooks.distance(fit1)
 Cook.Distance2 <- 1/k*(rstandard(fit1))^2*(Hat/(1-Hat))
 
 
+#Normal QQ:
+
+
+Standardizedr <- rstandard(fit1)[order(rstandard(fit1))]
+
+normalNumbers <- numeric(n)
+for (i in 1:n)
+          {normalNumbers[i]=qnorm(i/n)
+}
+normalNumbers[11]=3
+
+par(mfrow=c(1,2)) 
+plot(fit1,which=2)
+plot(normalNumbers,Standardizedr)
+
+
+
+
+
+
+
+
+
