@@ -128,7 +128,12 @@ plot(Hat,Standardizedr)
 
 
 
+# Fitted Value vs Y 
 
+
+par(mfrow=c(1,1)) 
+
+plot(pred,y)
 
 
 
