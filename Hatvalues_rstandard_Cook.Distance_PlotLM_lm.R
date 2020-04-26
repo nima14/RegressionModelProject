@@ -81,6 +81,20 @@ Cook.Distance <- cooks.distance(fit1)
 Cook.Distance2 <- 1/k*(rstandard(fit1))^2*(Hat/(1-Hat))
 
 
+
+
+
+#Residual vs Fitted Values:
+
+residuals <- resid(fit1)
+
+pred <- predict(fit1)
+
+par(mfrow=c(1,2)) 
+plot(fit1,which=1)
+plot(pred,residuals)
+
+
 #Normal QQ:
 
 
@@ -95,6 +109,23 @@ normalNumbers[11]=3
 par(mfrow=c(1,2)) 
 plot(fit1,which=2)
 plot(normalNumbers,Standardizedr)
+
+
+#Standardized residuals vs Fitted Value
+
+Standardizedr <- rstandard(fit1)
+par(mfrow=c(1,2)) 
+plot(fit1,which=3)
+plot(pred,sqrt(abs(Standardizedr)))
+
+
+#Residuals VS Leverage
+
+
+par(mfrow=c(1,2)) 
+plot(fit1,which=5)
+plot(Hat,Standardizedr)
+
 
 
 
